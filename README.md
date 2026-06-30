@@ -1,5 +1,10 @@
 # Orcho
 
+[![PyPI](https://img.shields.io/pypi/v/orcho.svg)](https://pypi.org/project/orcho/)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://pypi.org/project/orcho/)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
+[![DCO](https://github.com/symphos-ai/orcho/actions/workflows/dco.yml/badge.svg)](https://github.com/symphos-ai/orcho/actions/workflows/dco.yml)
+
 Local-first control plane for cross-agent AI software delivery.
 
 This package is the recommended installer for the public Orcho command set. It
