@@ -1,0 +1,5 @@
+"""Convenience installer package for the public Orcho command set."""
+
+__all__ = ["__version__"]
+
+__version__ = "0.5.5"

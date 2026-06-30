@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "orcho"
+version = "0.5.5"
+description = "Local-first control plane for cross-agent AI software delivery"
+requires-python = ">=3.12"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [
+    {name = "Symphos"},
+]
+keywords = [
+    "agents",
+    "ai",
+    "automation",
+    "cli",
+    "developer-tools",
+    "orchestration",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Build Tools",
+]
+dependencies = [
+    "orcho-core>=0.5.5,<0.6",
+]
+
+[project.optional-dependencies]
+mcp = [
+    "orcho-mcp>=0.1.0a0,<0.2",
+]
+all = [
+    "orcho-mcp>=0.1.0a0,<0.2",
+]
+dev = [
+    "build>=1.2",
+    "pytest>=8.0",
+    "ruff>=0.5",
+    "setuptools>=77",
+]
+
+[project.urls]
+Homepage = "https://github.com/symphos-ai/orcho"
+Repository = "https://github.com/symphos-ai/orcho"
+Issues = "https://github.com/symphos-ai/orcho/issues"
+
+[project.scripts]
+orcho = "orcho._scripts:orcho_main"
+orcho-run = "orcho._scripts:orcho_run_main"
+orcho-cross = "orcho._scripts:orcho_cross_main"
+orcho-mcp = "orcho._scripts:orcho_mcp_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["orcho*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
