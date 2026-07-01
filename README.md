@@ -3,7 +3,11 @@
 [![PyPI](https://img.shields.io/pypi/v/orcho.svg)](https://pypi.org/project/orcho/)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://pypi.org/project/orcho/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
+[![CI](https://github.com/symphos-ai/orcho/actions/workflows/ci.yml/badge.svg)](https://github.com/symphos-ai/orcho/actions/workflows/ci.yml)
 [![DCO](https://github.com/symphos-ai/orcho/actions/workflows/dco.yml/badge.svg)](https://github.com/symphos-ai/orcho/actions/workflows/dco.yml)
+[![Release](https://github.com/symphos-ai/orcho/actions/workflows/release.yml/badge.svg)](https://github.com/symphos-ai/orcho/actions/workflows/release.yml)
+[![codecov](https://codecov.io/gh/symphos-ai/orcho/branch/main/graph/badge.svg)](https://codecov.io/gh/symphos-ai/orcho)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/symphos-ai/orcho/badge)](https://scorecard.dev/viewer/?uri=github.com/symphos-ai/orcho)
 
 Local-first control plane for cross-agent AI software delivery.
 

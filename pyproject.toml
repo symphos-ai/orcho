@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "orcho"
-version = "0.5.5"
+version = "0.1.0"
 description = "Local-first control plane for cross-agent AI software delivery"
 requires-python = ">=3.12"
 readme = "README.md"
@@ -34,19 +34,20 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 dependencies = [
-    "orcho-core>=0.5.5,<0.6",
+    "orcho-core>=0.1.0,<0.2",
 ]
 
 [project.optional-dependencies]
 mcp = [
-    "orcho-mcp>=0.1.0a0,<0.2",
+    "orcho-mcp>=0.1.0,<0.2",
 ]
 all = [
-    "orcho-mcp>=0.1.0a0,<0.2",
+    "orcho-mcp>=0.1.0,<0.2",
 ]
 dev = [
     "build>=1.2",
     "pytest>=8.0",
+    "pytest-cov>=4.0",
     "ruff>=0.5",
     "setuptools>=77",
 ]
