@@ -17,25 +17,57 @@ Python extras.
 
 ## Install
 
-Core CLI:
+If `pipx` is missing, install it first. On macOS with Homebrew:
+
+```bash
+brew install pipx
+pipx ensurepath
+exec zsh -l
+```
+
+For Linux or Windows, use the
+[official pipx installation guide](https://pipx.pypa.io/stable/installation/).
+
+### Recommended: isolated CLI install
+
+Use `pipx` when you want Orcho commands available from your shell without
+installing Orcho into the current project or Python environment.
+
+```bash
+pipx install "orcho[mcp]"
+```
+
+This installs the core commands plus the MCP server:
+
+```bash
+orcho --help
+orcho-run --help
+orcho-cross --help
+orcho-mcp --help
+```
+
+Core commands only:
 
 ```bash
 pipx install orcho
 ```
 
-Core CLI plus MCP server:
+All optional public surfaces:
 
 ```bash
-pipx install 'orcho[mcp]'
-```
-
-Everything:
-
-```bash
-pipx install 'orcho[all]'
+pipx install "orcho[all]"
 ```
 
 Use quotes around extras in shells such as `zsh`.
+
+### Alternative: project-managed environment
+
+Use `pip` when you intentionally want Orcho inside the active virtual
+environment, CI image, devcontainer, or Docker image.
+
+```bash
+python -m pip install "orcho[mcp]"
+```
 
 ## Commands
 
