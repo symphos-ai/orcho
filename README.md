@@ -14,8 +14,8 @@ Local-first control plane for cross-agent AI software delivery.
 📖 **Documentation:** [docs.orcho.dev](https://docs.orcho.dev)
 
 This package is the recommended installer for the public Orcho command set. It
-installs the core CLI by default and can include optional control surfaces with
-Python extras.
+installs the full set by default — the core CLI and the MCP server. For a
+minimal engine-only install, depend on `orcho-core` directly.
 
 ## Install
 
@@ -36,7 +36,7 @@ Use `pipx` when you want Orcho commands available from your shell without
 installing Orcho into the current project or Python environment.
 
 ```bash
-pipx install "orcho[mcp]"
+pipx install orcho
 ```
 
 This installs the core commands plus the MCP server:
@@ -48,19 +48,14 @@ orcho-cross --help
 orcho-mcp --help
 ```
 
-Core commands only:
+Engine and core CLI only, without the MCP server:
 
 ```bash
-pipx install orcho
+python -m pip install orcho-core
 ```
 
-All optional public surfaces:
-
-```bash
-pipx install "orcho[all]"
-```
-
-Use quotes around extras in shells such as `zsh`.
+`orcho[mcp]` and `orcho[all]` remain as back-compat aliases; since 0.1.1 they
+install the same set as plain `orcho`.
 
 ### Alternative: project-managed environment
 
@@ -68,7 +63,7 @@ Use `pip` when you intentionally want Orcho inside the active virtual
 environment, CI image, devcontainer, or Docker image.
 
 ```bash
-python -m pip install "orcho[mcp]"
+python -m pip install orcho
 ```
 
 ## Commands
@@ -79,8 +74,6 @@ orcho-run --help
 orcho-cross --help
 orcho-mcp --help
 ```
-
-`orcho-mcp` requires `orcho[mcp]` or `orcho[all]`.
 
 ## Package Layout
 
