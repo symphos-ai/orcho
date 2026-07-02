@@ -11,6 +11,8 @@
 
 Local-first control plane for cross-agent AI software delivery.
 
+📖 **Documentation:** [docs.orcho.dev](https://docs.orcho.dev)
+
 This package is the recommended installer for the public Orcho command set. It
 installs the core CLI by default and can include optional control surfaces with
 Python extras.
