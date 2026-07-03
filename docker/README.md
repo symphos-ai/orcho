@@ -31,6 +31,11 @@ orcho run --project /workspace --task "Add input validation to the login endpoin
 orcho status
 ```
 
+Run state and evidence land in the container-internal Orcho workspace
+(`ORCHO_WORKSPACE=/orcho-workspace`), never inside your mounted project.
+Add `-v ~/.orcho-workspace:/orcho-workspace` to keep run history across
+containers; without it, history disappears with the container.
+
 ## One-time credential setup
 
 The agent CLIs inside the image start logged out. Put credentials in a
@@ -130,6 +135,8 @@ the required pieces.
 - On macOS, bind-mount file I/O is slower than native disk. For
   worktree-heavy runs the native `pipx` install remains the faster
   option; the container trades speed for isolation.
+- Non-interactive runs (`--no-interactive`, CI) must pass an explicit
+  `--profile` (e.g. `--profile task`); interactive runs prompt for one.
 - Version tags mirror the `orcho` package (`:0.1.1`, `:latest`). The
   image is also rebuilt on a weekly schedule so the bundled agent CLIs
   stay current.
