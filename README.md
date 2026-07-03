@@ -13,14 +13,31 @@ Local-first control plane for cross-agent AI software delivery.
 
 📖 **Documentation:** [docs.orcho.dev](https://docs.orcho.dev)
 
+This package is the recommended installer for the public Orcho command set. It
+installs the full set by default — the **core CLI** (`orcho-core`) and the
+**MCP server** (`orcho-mcp`). For a minimal engine-only install, depend on
+`orcho-core` directly.
+
+Those are the two ways to drive Orcho, and both come with this package.
+
+### Drive it yourself — the CLI
+
 ![One orcho run end to end, sped up: the opening envelope, the pipeline map, the plan contract, plan validation, implement subtasks with attestations, review, final acceptance, the delivery commit, and the closing rollup](https://raw.githubusercontent.com/symphos-ai/orcho-core/main/docs/assets/orcho-run-demo.gif)
 
-<sub>One `orcho run` end to end (mock pipeline, sped up). Interactive version
-with pause and scrub: [docs.orcho.dev](https://docs.orcho.dev).</sub>
+<sub>`orcho run` end to end (mock pipeline, sped up): plan → validation →
+implement → review → final acceptance → delivery, with a live phase stream and
+an evidence rollup.</sub>
 
-This package is the recommended installer for the public Orcho command set. It
-installs the full set by default — the core CLI and the MCP server. For a
-minimal engine-only install, depend on `orcho-core` directly.
+### Let your agent drive — MCP
+
+![An AI client driving Orcho over MCP: it starts a mock run with orcho_run_start, watches it to a terminal state with orcho_run_watch, pulls the record with orcho_run_evidence and orcho_run_diff, and returns a short verdict](https://raw.githubusercontent.com/symphos-ai/orcho-mcp/main/docs/assets/orcho-mcp-demo.gif)
+
+<sub>The same run, driven by an AI client (here Claude Code) through the MCP
+server — `orcho_run_start` → `orcho_run_watch` → `orcho_run_evidence` → verdict,
+all typed, no log scraping.</sub>
+
+<sub>Both runs above are `mock=True`. Interactive, pausable versions:
+[docs.orcho.dev](https://docs.orcho.dev).</sub>
 
 ## Install
 
