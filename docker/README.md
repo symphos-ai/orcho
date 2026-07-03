@@ -16,7 +16,7 @@ docker run --rm -it \
   -v "$PWD":/workspace \
   -v ~/.orcho-auth:/agent-auth:ro \
   ghcr.io/symphos-ai/orcho \
-  orcho run <task>
+  orcho run --project /workspace --task "<task>"
 ```
 
 Make it feel like a native CLI:
@@ -27,7 +27,7 @@ alias orcho='docker run --rm -it \
   -v ~/.orcho-auth:/agent-auth:ro \
   ghcr.io/symphos-ai/orcho orcho'
 
-orcho run my-task
+orcho run --project /workspace --task "Add input validation to the login endpoint."
 orcho status
 ```
 
@@ -82,7 +82,8 @@ your remote accepts). Local-only delivery (the default) needs none.
 ## MCP server
 
 The image also carries the MCP server, so an MCP client can drive a
-containerized Orcho over stdio:
+containerized Orcho over stdio. Mount the workspace parent directory and bind
+the server to the workspace inside the container:
 
 ```json
 {
@@ -91,14 +92,17 @@ containerized Orcho over stdio:
       "command": "docker",
       "args": [
         "run", "--rm", "-i",
-        "-v", "/path/to/project:/workspace",
+        "-v", "/path/to/my-workspace:/workspace",
         "-v", "/home/you/.orcho-auth:/agent-auth:ro",
+        "-e", "ORCHO_WORKSPACE=/workspace/workspace-orchestrator",
         "ghcr.io/symphos-ai/orcho", "orcho-mcp"
       ]
     }
   }
 }
 ```
+
+Inside that server, projects live under `/workspace/<project-name>`.
 
 ## Project toolchain
 

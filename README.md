@@ -41,6 +41,14 @@ all typed, no log scraping.</sub>
 
 ## Install
 
+Pick the install path by how isolated you want the run to be:
+
+| Path | Use when | Command |
+| --- | --- | --- |
+| Native CLI with `pipx` | You trust the machine and want `orcho` on your shell `PATH`. | `pipx install orcho` |
+| Docker | You want to try Orcho in a container, or keep agent CLIs and project tools isolated. | `docker pull ghcr.io/symphos-ai/orcho` |
+| Project-managed `pip` | You intentionally want Orcho inside a virtualenv, CI image, devcontainer, or custom Docker image. | `python -m pip install orcho` |
+
 If `pipx` is missing, install it first. On macOS with Homebrew:
 
 ```bash
@@ -91,7 +99,7 @@ alias orcho='docker run --rm -it \
   -v ~/.orcho-auth:/agent-auth:ro \
   ghcr.io/symphos-ai/orcho orcho'
 
-orcho run my-task
+orcho run --project /workspace --task "Add input validation to the login endpoint."
 orcho status
 ```
 
