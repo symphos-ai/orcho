@@ -41,6 +41,14 @@ all typed, no log scraping.</sub>
 
 ## Install
 
+Pick the install path by how isolated you want the run to be:
+
+| Path | Use when | Command |
+| --- | --- | --- |
+| Native CLI with `pipx` | You trust the machine and want `orcho` on your shell `PATH`. | `pipx install orcho` |
+| Docker | You want to try Orcho in a container, or keep agent CLIs and project tools isolated. | `docker pull ghcr.io/symphos-ai/orcho` |
+| Project-managed `pip` | You intentionally want Orcho inside a virtualenv, CI image, devcontainer, or custom Docker image. | `python -m pip install orcho` |
+
 If `pipx` is missing, install it first. On macOS with Homebrew:
 
 ```bash
@@ -78,6 +86,25 @@ python -m pip install orcho-core
 
 `orcho[mcp]` and `orcho[all]` remain as back-compat aliases; since 0.1.1 they
 install the same set as plain `orcho`.
+
+### Try without installing: Docker
+
+Use Docker when you want to run Orcho in an isolated container while mounting
+only the current project and an explicit credential directory.
+
+```bash
+docker pull ghcr.io/symphos-ai/orcho
+alias orcho='docker run --rm -it \
+  -v "$PWD":/workspace \
+  -v ~/.orcho-auth:/agent-auth:ro \
+  ghcr.io/symphos-ai/orcho orcho'
+
+orcho run --project /workspace --task "Add input validation to the login endpoint."
+orcho status
+```
+
+See [docker/README.md](docker/README.md) for the one-time credential bootstrap,
+MCP stdio setup, and project-toolchain extension pattern.
 
 ### Alternative: project-managed environment
 
