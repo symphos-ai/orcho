@@ -42,6 +42,12 @@ ENV IS_SANDBOX=1
 # Marker so tooling inside the container can detect the official envelope.
 ENV ORCHO_ENVELOPE=container
 
+# Default Orcho workspace: run state and evidence land here, never inside
+# the mounted project. Bind-mount this path to keep run history across
+# containers; without a mount it is ephemeral.
+ENV ORCHO_WORKSPACE=/orcho-workspace
+RUN mkdir -p /orcho-workspace
+
 WORKDIR /workspace
 
 COPY entrypoint.sh /usr/local/bin/orcho-entrypoint
