@@ -44,6 +44,12 @@ dependencies = [
 mcp = [
     "orcho-mcp>=0.2.0,<0.3",
 ]
+# The terminal UI is an optional component. The `orcho tui` command is always
+# reserved by the CLI; a selective install pulls the package in via this extra
+# (`pip install "orcho[tui]"`), which is what `orcho tui` advises when absent.
+tui = [
+    "orcho-tui>=0.1.0,<0.2",
+]
 all = [
     "orcho-mcp>=0.2.0,<0.3",
 ]
