@@ -16,25 +16,32 @@ ARG ORCHO_VERSION=
 ARG NODE_MAJOR=22
 
 # git powers worktree orchestration; node powers the agent CLIs.
+# gnupg is only needed to install the nodesource key and is purged after.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates curl git gnupg openssh-client \
     && curl -fsSL "https://deb.nodesource.com/setup_${NODE_MAJOR}.x" | bash - \
     && apt-get install -y --no-install-recommends nodejs \
+    && apt-get purge -y gnupg \
+    && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Agent CLIs. Deliberately unpinned: scheduled image rebuilds track vendor
-# releases without a commit in this repo.
-RUN npm install -g \
+# releases without a commit in this repo. npm itself is upgraded first so
+# its bundled dependencies carry current security fixes.
+RUN npm install -g npm@latest \
+    && npm install -g \
         @anthropic-ai/claude-code \
         @openai/codex \
         @google/gemini-cli \
     && npm cache clean --force
 
 # Orcho itself (umbrella package). Empty ORCHO_VERSION installs the latest
-# release; CI passes an explicit version on release builds.
-RUN pip install --no-cache-dir "orcho${ORCHO_VERSION:+==${ORCHO_VERSION}}"
+# release; CI passes an explicit version on release builds. pip is upgraded
+# first so the installer in the image carries current security fixes.
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir "orcho${ORCHO_VERSION:+==${ORCHO_VERSION}}"
 
 # Agent CLIs run non-interactively as root inside the container; claude
 # requires this marker to accept that combination.

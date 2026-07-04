@@ -125,6 +125,17 @@ Teams with an existing devcontainer can instead install Orcho and the
 agent CLIs into that image; this Dockerfile is a working reference for
 the required pieces.
 
+## Security scanning
+
+Scanners such as `docker scout` report CVEs inherited from the Debian
+base and from `git`'s dependency chain (notably `perl`); most carry
+"Fixed version: not fixed" upstream and appear in virtually every
+Debian-based image, including the official `python` and `node` bases.
+The weekly rebuild picks up Debian, npm, and pip security updates as
+they are released, and `npm`/`pip` are upgraded at build time so
+fixable advisories in the tooling do not linger. Pull `:latest` (or
+rebuild from this Dockerfile) to pick up the current state.
+
 ## Notes
 
 - The container runs as root with `IS_SANDBOX=1` (required by the
@@ -137,6 +148,10 @@ the required pieces.
   option; the container trades speed for isolation.
 - Non-interactive runs (`--no-interactive`, CI) must pass an explicit
   `--profile` (e.g. `--profile task`); interactive runs prompt for one.
+- Delivery commits are authored as `Orcho Container
+  <orcho@container.local>` unless you provide a `gitconfig` in
+  `/agent-auth` or set `GIT_AUTHOR_*`/`GIT_COMMITTER_*` variables —
+  supply your identity for commits you intend to keep.
 - Version tags mirror the `orcho` package (`:0.1.1`, `:latest`). The
   image is also rebuilt on a weekly schedule so the bundled agent CLIs
   stay current.

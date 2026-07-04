@@ -40,4 +40,12 @@ if [ -f "$AUTH_DIR/gitconfig" ]; then
     cp "$AUTH_DIR/gitconfig" "$HOME/.gitconfig"
 fi
 
+# Delivery commits need a git identity; without one the run halts at the
+# delivery step. Fall back to a container identity unless the operator
+# provided a gitconfig or identity environment variables.
+if [ ! -f "$HOME/.gitconfig" ] && [ -z "${GIT_AUTHOR_EMAIL:-}" ]; then
+    git config --global user.name "Orcho Container"
+    git config --global user.email "orcho@container.local"
+fi
+
 exec "$@"
