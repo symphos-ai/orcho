@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+## 0.2.0 - 2026-07-05
+
+### Changed
+
+- Depends on the `orcho-core` and `orcho-mcp` 0.2 line (`>=0.2.0,<0.3`).
+
+### Fixed
+
+- Docker image CVE hygiene and a git-identity fallback for commits made inside
+  the container.
+- Docker workspace default and persistence behavior.
+
 ## 0.1.1 - 2026-07-02
 
 Full command set by default.

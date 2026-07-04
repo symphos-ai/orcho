@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "orcho"
-version = "0.1.1"
+version = "0.2.0"
 description = "Local-first control plane for cross-agent AI software delivery"
 requires-python = ">=3.12"
 readme = "README.md"
@@ -34,18 +34,18 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 dependencies = [
-    "orcho-core>=0.1.0,<0.2",
-    "orcho-mcp>=0.1.0,<0.2",
+    "orcho-core>=0.2.0,<0.3",
+    "orcho-mcp>=0.2.0,<0.3",
 ]
 
 [project.optional-dependencies]
 # Since 0.1.1 the MCP server ships by default; [mcp] and [all] remain as
 # no-op back-compat aliases for commands already published in docs.
 mcp = [
-    "orcho-mcp>=0.1.0,<0.2",
+    "orcho-mcp>=0.2.0,<0.3",
 ]
 all = [
-    "orcho-mcp>=0.1.0,<0.2",
+    "orcho-mcp>=0.2.0,<0.3",
 ]
 dev = [
     "build>=1.2",
