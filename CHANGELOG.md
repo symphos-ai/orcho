@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 0.3.0 - 2026-07-06
+
+### Added
+
+- `[tui]` optional extra for a selective terminal-UI install
+  (`pip install "orcho[tui]"`); the `orcho tui` command advises it when absent.
+
+### Changed
+
+- Depends on the `orcho-core` and `orcho-mcp` 0.3 line (`>=0.3.0,<0.4`).
+
 ## 0.2.0 - 2026-07-05
 
 ### Changed
