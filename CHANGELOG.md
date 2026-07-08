@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.4.0 - 2026-07-08
+
+### Changed
+
+- Depends on the `orcho-core` and `orcho-mcp` 0.4 line (`>=0.4.0,<0.5`).
+
 ## 0.3.0 - 2026-07-06
 
 ### Added

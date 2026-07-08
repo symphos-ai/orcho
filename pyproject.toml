@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "orcho"
-version = "0.3.0"
+version = "0.4.0"
 description = "Local-first control plane for cross-agent AI software delivery"
 requires-python = ">=3.12"
 readme = "README.md"
@@ -34,15 +34,15 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 dependencies = [
-    "orcho-core>=0.3.0,<0.4",
-    "orcho-mcp>=0.3.0,<0.4",
+    "orcho-core>=0.4.0,<0.5",
+    "orcho-mcp>=0.4.0,<0.5",
 ]
 
 [project.optional-dependencies]
 # Since 0.1.1 the MCP server ships by default; [mcp] and [all] remain as
 # no-op back-compat aliases for commands already published in docs.
 mcp = [
-    "orcho-mcp>=0.3.0,<0.4",
+    "orcho-mcp>=0.4.0,<0.5",
 ]
 # The terminal UI is an optional component. The `orcho tui` command is always
 # reserved by the CLI; a selective install pulls the package in via this extra
@@ -51,7 +51,7 @@ tui = [
     "orcho-tui>=0.1.0,<0.2",
 ]
 all = [
-    "orcho-mcp>=0.3.0,<0.4",
+    "orcho-mcp>=0.4.0,<0.5",
 ]
 dev = [
     "build>=1.2",
