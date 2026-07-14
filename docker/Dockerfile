@@ -30,12 +30,25 @@ RUN apt-get update \
 # Agent CLIs. Deliberately unpinned: scheduled image rebuilds track vendor
 # releases without a commit in this repo. npm itself is upgraded first so
 # its bundled dependencies carry current security fixes.
-RUN npm install -g npm@latest \
+#
+# npm is held at 11.x on purpose: npm 12 mis-links the claude launcher to its
+# platform-native optional dependency (@anthropic-ai/claude-code-linux-*), so
+# `claude` in the image fails with "native binary not installed" / "exec format
+# error" even though the binary is present and runnable. 11.x still tracks
+# security patches within the major. Revisit when npm >=12 resolves that.
+RUN npm install -g npm@11 \
     && npm install -g \
         @anthropic-ai/claude-code \
         @openai/codex \
         @google/gemini-cli \
     && npm cache clean --force
+
+# Fail the BUILD, not the published image: every agent CLI must actually run.
+# This exact regression (a broken `claude`) shipped to :latest because the only
+# smoke test ran after the push.
+RUN claude --version \
+    && codex --version \
+    && gemini --version
 
 # Orcho itself (umbrella package). Empty ORCHO_VERSION installs the latest
 # release; CI passes an explicit version on release builds. pip is upgraded

@@ -1,6 +1,13 @@
 name: image
 
 on:
+  # Verify image changes before they land: build + smoke, never publish.
+  # Without this a broken image is only discovered after it is already live.
+  pull_request:
+    paths:
+      - ".github/workflows/image.yml"
+      - "docker/**"
+      - "pyproject.toml"
   push:
     branches: [main]
     paths:
@@ -34,6 +41,7 @@ jobs:
       - uses: docker/setup-buildx-action@v4
 
       - uses: docker/login-action@v4
+        if: github.event_name != 'pull_request'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -68,7 +76,35 @@ jobs:
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 
-      - uses: docker/build-push-action@v7
+      # Smoke BEFORE publish. A broken image must never reach :latest — that
+      # already happened once (a `claude` that could not start shipped, because
+      # the only smoke test ran against the ALREADY-pushed image).
+      #
+      # Multi-arch cannot be `load`ed into the daemon, so build the runner's
+      # own arch first and load that. The multi-arch publish below reuses these
+      # layers from cache, so this costs one arch's build, not two.
+      - name: Build image for smoke test (not pushed)
+        uses: docker/build-push-action@v7
+        with:
+          context: docker
+          platforms: linux/amd64
+          push: false
+          load: true
+          build-args: |
+            ORCHO_VERSION=${{ steps.meta.outputs.version }}
+          tags: orcho:smoke
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Smoke-test image
+        run: |
+          docker run --rm orcho:smoke orcho --help
+          docker run --rm orcho:smoke claude --version
+          docker run --rm orcho:smoke codex --version
+          docker run --rm orcho:smoke gemini --version
+
+      - name: Publish image
+        if: github.event_name != 'pull_request'
+        uses: docker/build-push-action@v7
         with:
           context: docker
           platforms: linux/amd64,linux/arm64
@@ -77,10 +113,3 @@ jobs:
             ORCHO_VERSION=${{ steps.meta.outputs.version }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Smoke-test published image
-        run: |
-          docker run --rm "ghcr.io/${{ github.repository_owner }}/orcho:latest" orcho --help
-          docker run --rm "ghcr.io/${{ github.repository_owner }}/orcho:latest" claude --version
-          docker run --rm "ghcr.io/${{ github.repository_owner }}/orcho:latest" codex --version
-          docker run --rm "ghcr.io/${{ github.repository_owner }}/orcho:latest" gemini --version
