@@ -20,7 +20,8 @@ development only; it is separate from Orcho-managed worktree runs.
 ## Package Boundary
 
 - Keep `orcho-core` as the required dependency.
-- Keep MCP as an optional extra.
+- Keep MCP in the default public command set. The historical `[mcp]` and
+  `[all]` extras remain no-op compatibility aliases.
 - Do not copy implementation code from sibling packages into this package.
 - Wrapper scripts may import sibling packages at command runtime and should
   print a concise install hint when an optional extra is missing.

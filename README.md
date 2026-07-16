@@ -9,7 +9,11 @@
 [![codecov](https://codecov.io/gh/symphos-ai/orcho/branch/main/graph/badge.svg)](https://codecov.io/gh/symphos-ai/orcho)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/symphos-ai/orcho/badge)](https://scorecard.dev/viewer/?uri=github.com/symphos-ai/orcho)
 
-Local-first control plane for cross-agent AI software delivery.
+Orcho is a production harness and local-first control plane around AI coding
+workers.
+
+**Run one task. Watch Orcho plan, implement, reject false-ready work, repair
+it, and prove what is ready to deliver.**
 
 📖 **Documentation:** [docs.orcho.dev](https://docs.orcho.dev)
 
