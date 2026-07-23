@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 0.5.0 - 2026-07-23
+
+### Changed
+
+- Depends on the `orcho-core` and `orcho-mcp` 0.5 line (`>=0.5.0,<0.6`).
+- Reports the installed distribution version instead of a stale package
+  constant.
+
 ## 0.4.0 - 2026-07-08
 
 ### Changed
