@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## 0.6.0 - 2026-07-28
+
+### Changed
+
+- Depends on the `orcho-core` and `orcho-mcp` 0.6 line
+  (`>=0.6.0,<0.7`).
+- Release-path GitHub Actions use immutable pins and CodeQL covers protected
+  release branches.
+
 ### Removed
 
 - Removed the unresolved `[tui]` extra. The reserved `orcho tui` command no
