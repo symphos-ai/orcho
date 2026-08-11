@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## 0.7.0 - 2026-08-11
+
+### Changed
+
+- Depends on the `orcho-core` and `orcho-mcp` 0.7 line
+  (`>=0.7.0,<0.8`), which adds typed verification-command timeouts,
+  honest delivery decidability for stopped runs, and retention-aware
+  workspace cleanup with a confirmed MCP reclaim surface.
+
 ## 0.6.0 - 2026-07-28
 
 ### Changed
