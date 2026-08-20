@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 0.8.0 - 2026-08-20
+
+### Changed
+
+- Requires the `orcho-core` and `orcho-mcp` 0.8.0 line, the Windows onboarding
+  release: UTF-8 git output on non-UTF-8 consoles, a concurrent stderr drain
+  that fixes a cross-platform child-process deadlock, sandbox passthrough for
+  the GLM auth token, and a fail-fast guard for over-long Windows command
+  lines. `claude-glm` setup moved into the runtime adapter; the packaged
+  wrapper scripts and `orcho runtimes install` are gone.
+
 ## 0.7.0 - 2026-08-11
 
 ### Changed
