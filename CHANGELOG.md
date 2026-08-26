@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+## 0.8.6 - 2026-08-26
+
+A version-identity release. The dependency ranges meant a new install always
+received the current engine, so nothing was broken about what people ran — but
+this package had stood at 0.8.0 since 20 August while `orcho-core` shipped four
+releases, so `pip list` and this package's PyPI page both understated the
+project by a month. Field reports arrived reading "orcho 0.8.0, orcho-core
+0.8.4", which is confusing in exactly the situation where clarity matters most.
+
+### Changed
+
+- Requires `orcho-core>=0.8.6` and `orcho-mcp>=0.8.1`. The floors now name the
+  versions this release is actually tested against, so the umbrella version is
+  a statement about the set rather than a number that drifts away from it.
+  Those releases carry: bounded service subprocesses and real process-tree
+  ownership on Windows; a detached launch that no longer inherits the
+  launcher's stdin; a run that cannot advance no longer reporting as active,
+  and `repair-state` able to finalise it; the GLM adapter owning its own CLI
+  configuration directory; and a profile-declared phase effort finally
+  reaching the run.
+
 ## 0.8.0 - 2026-08-20
 
 ### Changed
