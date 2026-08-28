@@ -2,6 +2,29 @@
 
 ## Unreleased
 
+## 0.9.0 - 2026-08-29
+
+A re-pin release: this package carries no code of its own, and the floors now
+name the versions the set is actually tested against.
+
+### Changed
+
+- Requires `orcho-core>=0.9.0` and `orcho-mcp>=0.8.2`. The previous floors
+  capped `orcho-core` below 0.9, so an install would have held users on an
+  engine that cannot tell a working run from one that ceased to exist —
+  the liveness predicate behind both the `stalled` verdict and
+  `repair-state`'s orphan repair could never fire on a real run, because the
+  reader rejected the timestamps the event writer emits.
+
+  Those releases also carry: `orcho workspace init` as a decision surface
+  instead of a scaffolder that wrote a `plugin.py` nothing reads, plus a new
+  `orcho workspace mcp`; a verification gate that ran clean but cannot be
+  proven no longer reported as a failing test suite; a paused gate that tells
+  the operator what was rejected instead of an empty summary; `pre_run_dirty`
+  intake that can seed an untracked directory; and, on Windows, a launched run
+  that asks to break out of the launcher's job object.
+
+
 ## 0.8.6 - 2026-08-26
 
 A version-identity release. The dependency ranges meant a new install always
