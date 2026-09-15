@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+## 1.0.0 - 2026-09-15
+
+Installs the coordinated Orcho 1.0 package set for criterion evidence,
+verification progress, and recoverable delivery through CLI and MCP.
+
+### Changed
+
+- Requires `orcho-core>=1.0.0,<2.0` and `orcho-mcp>=1.0.0,<2.0`.
+- The historical `[mcp]` and `[all]` extras retain the same default command set.
+- Documents `orcho update` for installation-manager-aware upgrades.
+
+### Upgrade Notes
+
+- Upgrade the complete installation and restart MCP servers. Clients consuming
+  plan criteria must handle typed objects; delivery commit state can be unknown;
+  a halted CLI run exits with code `3` rather than reporting success.
+- This package delegates runtime behavior to core and MCP. Their release notes
+  describe verification-contract requirements and known acceptance and legacy
+  delivery-reconciliation limitations.
+
 ## 0.9.0 - 2026-08-29
 
 A re-pin release: this package carries no code of its own, and the floors now
