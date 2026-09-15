@@ -2,14 +2,14 @@
 
 ## Unreleased
 
-## 1.0.0 - 2026-09-15
+## 0.10.0 - 2026-09-15
 
-Installs the coordinated Orcho 1.0 package set for criterion evidence,
+Installs the coordinated Orcho 0.10 package set for criterion evidence,
 verification progress, and recoverable delivery through CLI and MCP.
 
 ### Changed
 
-- Requires `orcho-core>=1.0.0,<2.0` and `orcho-mcp>=1.0.0,<2.0`.
+- Requires `orcho-core>=0.10.0,<0.11` and `orcho-mcp>=0.10.0,<0.11`.
 - The historical `[mcp]` and `[all]` extras retain the same default command set.
 - Documents `orcho update` for installation-manager-aware upgrades.
 
