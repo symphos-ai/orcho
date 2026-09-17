@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## 0.10.0 - 2026-09-15
+## 0.10.0 - 2026-09-17
 
 Installs the coordinated Orcho 0.10 package set for criterion evidence,
 verification progress, and recoverable delivery through CLI and MCP.
@@ -19,8 +19,8 @@ verification progress, and recoverable delivery through CLI and MCP.
   plan criteria must handle typed objects; delivery commit state can be unknown;
   a halted CLI run exits with code `3` rather than reporting success.
 - This package delegates runtime behavior to core and MCP. Their release notes
-  describe verification-contract requirements and known acceptance and legacy
-  delivery-reconciliation limitations.
+  describe verification-contract requirements and the legacy
+  delivery-reconciliation limitation.
 
 ## 0.9.0 - 2026-08-29
 
