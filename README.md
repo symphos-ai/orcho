@@ -91,6 +91,28 @@ python -m pip install orcho-core
 `orcho[mcp]` and `orcho[all]` remain as back-compat aliases; since 0.1.1 they
 install the same set as plain `orcho`.
 
+### Upgrading
+
+`orcho update` resolves the installer that owns the environment Orcho is
+running from and upgrades through it:
+
+```bash
+orcho update
+```
+
+Add `--dry-run` to see the detected install and the upgrade command without
+running it. Orcho delegates to the detected manager rather than reimplementing
+one, so you can always run the equivalent command yourself:
+
+| Install | Upgrade command |
+| --- | --- |
+| `pipx` | `pipx upgrade orcho` |
+| `uv tool` | `uv tool upgrade orcho` |
+| `pip` in a virtualenv or image | `python -m pip install --upgrade orcho` |
+
+Editable installs and source checkouts are reported, not upgraded: there the
+checkout is the upgrade unit, so update it with `git pull` instead.
+
 ### Try without installing: Docker
 
 Use Docker when you want to run Orcho in an isolated container while mounting
