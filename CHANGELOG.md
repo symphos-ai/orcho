@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+## 0.11.0 - 2026-09-20
+
+Installs the coordinated Orcho 0.11 package set with same-run recovery for
+verification failures caused only by the execution environment.
+
+### Changed
+
+- Requires `orcho-core>=0.11.0,<0.12` and `orcho-mcp>=0.11.0,<0.12`.
+- The historical `[mcp]` and `[all]` extras retain the same default command set.
+
+### Upgrade Notes
+
+- Upgrade the complete installation and restart MCP servers. Eligible parked
+  runs can then expose `retry_verification`, re-run their exact persisted gate
+  set, and continue without repeating completed agent phases.
+- The retry remains unavailable for product defects, mixed failure classes, or
+  runs whose persisted evidence and retained worktree cannot prove a safe
+  same-run retry.
+
 ## 0.10.0 - 2026-09-17
 
 Installs the coordinated Orcho 0.10 package set for criterion evidence,
