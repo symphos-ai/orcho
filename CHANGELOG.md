@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+## 0.11.1 - 2026-09-29
+
+Installs the coordinated Orcho 0.11.1 package set with refreshed default
+agent assignments and safer gate continuation and delivery reconciliation.
+
+### Changed
+
+- Requires `orcho-core>=0.11.1,<0.12` and `orcho-mcp>=0.11.1,<0.12`.
+- The historical `[mcp]` and `[all]` extras retain the default command set.
+
+### Upgrade Notes
+
+- Upgrade the complete installation and restart long-lived MCP servers to use
+  the new core defaults and recovery behavior.
+
 ## 0.11.0 - 2026-09-20
 
 Installs the coordinated Orcho 0.11 package set with same-run recovery for
